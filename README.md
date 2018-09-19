@@ -10,6 +10,11 @@ Demonstration videos and presentation available on the "Media" folder.
 
 ### Image Classification
 
+Ready things with
+
+    virtualenv venv
+    pip install -r ../requirements.txt
+
 Get some images into the "dataset_raw" folder. We used `crawl.py` and `google_bulk.sh` to get a dataset. If RPi is enabled, running `rpi_cam_batch.py` there to save a stream of images, and `cp_from_pi.sh` to copy them locally, also works. Then, `augment.py` to turn your small dataset into something large (we did 5k images per raw dataset category, and grouped into categories `pee`, `poo`, and `empty` in the "dataset" folder). Then, `learn.sh` to learn from the dataset, and test with `test.sh` (put test images in the "test" folder). 
 
 During demonstration, `classify_server.py` is running (10.42.0.1:6666) to take calls from RPi and reply correct type.
@@ -48,7 +53,7 @@ Check "Media/hack_1.wmv" for more info.
 
 To save batches of images from camera, run `rpi_cam_batch.py`.
 
-To answer requests send by Google Assistant via [IFTTT](https://ifttt.com) into an Adafruit MQTT server, keep `mqtt.py` running, and plug some speakers into the RPi.
+To answer requests sent by Google Assistant via [IFTTT](https://ifttt.com) into an Adafruit MQTT server, keep `mqtt.py` running, and plug some speakers into the RPi.
 
 During demonstration, first plug in the USB serial connecter to the Sensor Arduino (/dev/ttyUSB0), then the one to the Actuator Arduino (/dev/ttyUSB1), run the NN server (10.42.0.1:6666), and the SmartHouse server (10.1.0.129:5000). Finally, run `rpi_cam_serial.py` to process all the information from sensors, and execute upon actuators. The sensor arduino is required for this, the others are optional (NN's default to type 2, SmartHouse statistics are not sent, and actuators are not performed upon).
 
